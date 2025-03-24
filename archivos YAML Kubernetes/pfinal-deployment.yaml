@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pf-deployment
+  namespace: pfinal
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: pf-app
+  template:
+    metadata:
+      labels:
+        app: pf-app
+    spec:
+      containers:
+      - name: pf-app
+        image: rpumacayoh/ms-productos:v1
+        args:
+          - "-text=Hola de Proyecto final"  # Mensaje para la aplicación del proyecto
+        ports:
+          - containerPort: 9095
